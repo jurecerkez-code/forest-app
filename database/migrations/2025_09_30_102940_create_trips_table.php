@@ -10,12 +10,18 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('trips', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('trips', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->timestamp('start_time');
+        $table->timestamp('end_time')->nullable();
+        $table->integer('duration')->nullable();
+        $table->integer('satisfaction')->nullable();
+        $table->string('audio_file');
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
