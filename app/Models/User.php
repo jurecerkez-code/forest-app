@@ -47,7 +47,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function trips()
+    {
+    return $this->hasMany(Trip::class);
+    }
 
+public function comments()
+    {
+    return $this->hasMany(Comment::class);
+    }
     /**
      * Get the user's initials
      */
