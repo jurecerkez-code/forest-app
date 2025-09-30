@@ -26,7 +26,15 @@ jobs:
           php-version: '8.4'
 
       - name: Add Flux Credentials Loaded From ENV
-        run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
+        env:
+          FLUX_USERNAME: ${{ secrets.FLUX_USERNAME }}
+          FLUX_LICENSE_KEY: ${{ secrets.FLUX_LICENSE_KEY || '' }}
+        run: |
+          if [ -z "$FLUX_USERNAME" ] || [ -z "$FLUX_LICENSE_KEY" ]; then
+            echo "Missing FLUX_USERNAME or FLUX_LICENSE_KEY secret." >&2
+            exit 1
+          fi
+          composer config http-basic.composer.fluxui.dev "$FLUX_USERNAME" "$FLUX_LICENSE_KEY"
 
       - name: Install Dependencies
         run: |
