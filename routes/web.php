@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\TripController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
