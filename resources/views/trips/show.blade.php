@@ -1,4 +1,3 @@
-
 <x-layouts.app>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         @if(session('success'))
@@ -7,7 +6,40 @@
             </div>
         @endif
         
-        <h1 class="text-3xl font-bold mb-6">Trip Details</h1>
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Trip Details</h1>
+            
+            @if($trip->canEditOrDelete(auth()->user()))
+                <div class="flex gap-2">
+                    <a href="{{ route('trips.edit', $trip->id) }}" 
+                       class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+                        Edit
+                    </a>
+                    <form action="{{ route('trips.destroy', $trip->id) }}" method="POST" 
+                          onsubmit="return confirm('Are you sure you want to delete this trip?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" 
+                                class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            @endif
+        </div>
+        
+        <!-- Audio Player -->
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Meditation Session</h2>
+            
+            <div class="mb-4">
+                <p class="font-medium text-lg mb-2">{{ basename($trip->audio_file, '.mp3') }}</p>
+                <audio controls class="w-full">
+                    <source src="{{ asset('audio/' . $trip->audio_file) }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
         
         <div class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-xl font-semibold mb-4">Session Information</h2>
@@ -79,7 +111,10 @@
                         <div class="bg-gray-50 rounded-lg p-4">
                             <div class="flex items-start justify-between">
                                 <div class="flex-1">
-                                    <p class="font-semibold text-sm">{{ $comment->user->name }}</p>
+                                    <a href="{{ route('users.show', $comment->user->id) }}" 
+                                       class="font-semibold text-sm text-blue-600 hover:underline">
+                                        {{ $comment->user->name }}
+                                    </a>
                                     <p class="text-gray-700 mt-1">{{ $comment->content }}</p>
                                 </div>
                                 <span class="text-xs text-gray-500">
