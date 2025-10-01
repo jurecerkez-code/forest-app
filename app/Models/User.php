@@ -20,9 +20,10 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-    'name',
-    'email',
-    'password',
+        'name',
+        'email',
+        'password',
+        'is_admin',  // ← ADDED THIS
     ];
 
     /**
@@ -47,6 +48,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
     public function trips()
     {
         return $this->hasMany(Trip::class);
@@ -56,6 +58,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    // ← ADDED THIS METHOD
+    public function isAdmin(): bool
+    {
+        return $this->is_admin === true;
+    }
+
     /**
      * Get the user's initials
      */
