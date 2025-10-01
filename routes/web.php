@@ -1,52 +1,33 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
-use Livewire\Volt\Volt;
-use App\Http\Controllers\TripController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TripController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-    Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/home', [DashboardController::class, 'index'])->name('home');
+    
+    // Trip routes
     Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
     Route::get('/trips/create', [TripController::class, 'create'])->name('trips.create');
     Route::post('/trips', [TripController::class, 'store'])->name('trips.store');
     Route::get('/trips/{id}', [TripController::class, 'show'])->name('trips.show');
+    Route::get('/trips/{id}/edit', [TripController::class, 'edit'])->name('trips.edit');
+    Route::put('/trips/{id}', [TripController::class, 'update'])->name('trips.update');
+    Route::delete('/trips/{id}', [TripController::class, 'destroy'])->name('trips.destroy');
     Route::post('/trips/{id}/complete', [TripController::class, 'complete'])->name('trips.complete');
     
+    // Comment routes
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-});
-
-//Update the home route://
-
-Route::get('/home', function () {
-    return redirect()->route('trips.index');
-})->middleware(['auth'])->name('home');
-
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-
-    Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
-    Volt::route('settings/password', 'settings.password')->name('password.edit');
-    Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
-
-    Volt::route('settings/two-factor', 'settings.two-factor')
-        ->middleware(
-            when(
-                Features::canManageTwoFactorAuthentication()
-                    && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
-                ['password.confirm'],
-                [],
-            ),
-        )
-        ->name('two-factor.show');
+    
+    // User routes
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 });
 
 require __DIR__.'/auth.php';
