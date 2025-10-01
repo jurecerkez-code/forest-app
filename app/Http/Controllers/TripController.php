@@ -146,6 +146,10 @@ class TripController extends Controller
             'duration' => now()->diffInSeconds($trip->start_time),
             'satisfaction' => $request->satisfaction,
         ]);
+
+        // Send notification
+        $trip->user->notify(new \App\Notifications\TripCompletedNotification($trip));
+
         
         return redirect()->route('trips.show', $trip->id)
             ->with('success', 'Trip completed successfully!');
