@@ -20,7 +20,15 @@ class TripController extends Controller
     
     public function create()
     {
-        return view('trips.create');
+        // Get available audio files from public/audio directory
+        $audioFiles = [
+            'meditation_nature.mp3' => 'Nature Meditation (10 min)',
+            'meditation_breathing.mp3' => 'Breathing Exercise (10 min)',
+            'meditation_mindfulness.mp3' => 'Mindfulness Walk (10 min)',
+            'meditation_forest.mp3' => 'Forest Therapy (10 min)',
+        ];
+        
+        return view('trips.create', compact('audioFiles'));
     }
     
     public function store(Request $request)
@@ -54,6 +62,71 @@ class TripController extends Controller
         }
         
         return view('trips.show', compact('trip'));
+    }
+    
+    public function edit($id)
+    {
+        $trip = Trip::findOrFail($id);
+        
+        // Check access rights
+        if (!$trip->canEditOrDelete(auth()->user())) {
+            return redirect()->route('trips.show', $trip->id)
+                ->with('error', 'You do not have permission to edit this trip.');
+        }
+        
+        $audioFiles = [
+            'meditation_nature.mp3' => 'Nature Meditation (10 min)',
+            'meditation_breathing.mp3' => 'Breathing Exercise (10 min)',
+            'meditation_mindfulness.mp3' => 'Mindfulness Walk (10 min)',
+            'meditation_forest.mp3' => 'Forest Therapy (10 min)',
+        ];
+        
+        return view('trips.edit', compact('trip', 'audioFiles'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $trip = Trip::findOrFail($id);
+        
+        // Check access rights
+        if (!$trip->canEditOrDelete(auth()->user())) {
+            abort(403);
+        }
+        
+        $request->validate([
+            'audio_file' => 'required|string',
+            'satisfaction' => 'nullable|integer|min:1|max:5',
+        ]);
+        
+        $trip->update([
+            'audio_file' => $request->audio_file,
+            'satisfaction' => $request->satisfaction,
+        ]);
+        
+        // Update voice session
+        if ($trip->voiceSession) {
+            $trip->voiceSession->update([
+                'audio_file' => $request->audio_file,
+            ]);
+        }
+        
+        return redirect()->route('trips.show', $trip->id)
+            ->with('success', 'Trip updated successfully!');
+    }
+    
+    public function destroy($id)
+    {
+        $trip = Trip::findOrFail($id);
+        
+        // Check access rights
+        if (!$trip->canEditOrDelete(auth()->user())) {
+            abort(403);
+        }
+        
+        $trip->delete();
+        
+        return redirect()->route('trips.index')
+            ->with('success', 'Trip deleted successfully!');
     }
     
     public function complete(Request $request, $id)
