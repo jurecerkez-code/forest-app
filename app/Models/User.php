@@ -47,7 +47,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    php
     public function trips()
     {
         return $this->hasMany(Trip::class);
