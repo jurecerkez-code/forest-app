@@ -31,3 +31,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/blade-test', fn() => view('blade-test'));
