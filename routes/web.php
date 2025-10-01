@@ -14,6 +14,22 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+    Route::middleware(['auth'])->group(function () {
+    Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
+    Route::get('/trips/create', [TripController::class, 'create'])->name('trips.create');
+    Route::post('/trips', [TripController::class, 'store'])->name('trips.store');
+    Route::get('/trips/{id}', [TripController::class, 'show'])->name('trips.show');
+    Route::post('/trips/{id}/complete', [TripController::class, 'complete'])->name('trips.complete');
+    
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+});
+
+//Update the home route://
+
+Route::get('/home', function () {
+    return redirect()->route('trips.index');
+})->middleware(['auth'])->name('home');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
