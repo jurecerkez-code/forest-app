@@ -1,4 +1,3 @@
-@'
 <x-layouts.app>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         @if(session('success'))
@@ -39,7 +38,7 @@
             @if($trip->satisfaction)
                 <div class="mt-4 pt-4 border-t">
                     <p class="text-sm text-gray-600">Your Rating</p>
-                    <p class="text-2xl">{{ str_repeat('⭐', $trip->satisfaction) }}</p>
+                    <p class="text-2xl">{{ str_repeat('*', $trip->satisfaction) }}</p>
                 </div>
             @else
                 <div class="mt-6 pt-6 border-t">
@@ -53,11 +52,11 @@
                                 class="w-full border-gray-300 rounded-lg shadow-sm mb-3"
                                 required>
                             <option value="">Select rating...</option>
-                            <option value="1">⭐ - Poor</option>
-                            <option value="2">⭐⭐ - Fair</option>
-                            <option value="3">⭐⭐⭐ - Good</option>
-                            <option value="4">⭐⭐⭐⭐ - Very Good</option>
-                            <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+                            <option value="1">* - Poor</option>
+                            <option value="2">** - Fair</option>
+                            <option value="3">*** - Good</option>
+                            <option value="4">**** - Very Good</option>
+                            <option value="5">***** - Excellent</option>
                         </select>
                         <button type="submit" 
                                 class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg">
@@ -117,7 +116,7 @@
         <div class="mt-6">
             <a href="{{ route('trips.index') }}" 
                class="text-blue-600 hover:underline">
-                ← Back to all trips
+                Back to all trips
             </a>
         </div>
     </div>
