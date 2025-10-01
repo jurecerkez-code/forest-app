@@ -37,4 +37,20 @@ class Trip extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function canEditOrDelete(User $user): bool
+{
+    // Admin users can always edit and delete all trips
+    if ($user->isAdmin()) {
+        return true;
+    }
+
+    // Only the owner can delete or edit their trip
+    if ($this->user_id !== $user->id) {
+        return false;
+    }
+
+    return true;
+}
+
 }
