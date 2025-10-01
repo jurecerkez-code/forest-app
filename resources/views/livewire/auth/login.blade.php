@@ -57,11 +57,19 @@ new #[Layout('components.layouts.auth')] class extends Component {
      */
     protected function validateCredentials(): User
     {
-        $user = Auth::getProvider()->retrieveByCredentials(['email' => $this->email, 'password' => $this->password]);
+        $authUser = Auth::getProvider()->retrieveByCredentials(['email' => $this->email, 'password' => $this->password]);
 
-        if (! $user || ! Auth::getProvider()->validateCredentials($user, ['password' => $this->password])) {
+        if (! $authUser || ! Auth::getProvider()->validateCredentials($authUser, ['password' => $this->password])) {
             RateLimiter::hit($this->throttleKey());
 
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed'),
+            ]);
+        }
+
+        // Ensure the returned user is an instance of App\Models\User
+        $user = User::where('email', $this->email)->first();
+        if (! $user) {
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
