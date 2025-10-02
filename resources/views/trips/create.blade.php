@@ -10,9 +10,9 @@
                 <select name="audio_file" required class="w-full border rounded-lg p-2">
                     <option value="">Choose a session...</option>
                     <option value="meditation_forest">Forest Sounds - 10 min</option>
-                    <option value="meditation_nature">Nature Sounds - 15 min</option>
-                    <option value="meditation_breathing">Breathing - 20 min</option>
-                    <option value="meditation_mindfulness">Mindfulness - 30 min</option>
+                    <option value="meditation_nature">Nature Sounds - 10 min</option>
+                    <option value="meditation_breathing">Breathing - 10 min</option>
+                    <option value="meditation_mindfulness">Mindfulness - 10 min</option>
                 </select>
                 @error('audio_file')
                     <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
