@@ -40,7 +40,7 @@
         
         <!-- Main Content -->
         <main class="flex-1 p-8 overflow-y-auto">
-            {{ `$slot }}
+            {{ $slot }}
         </main>
     </div>
 </body>
