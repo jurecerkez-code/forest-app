@@ -43,6 +43,9 @@
             {{ $slot }}
         </main>
     </div>
+
+    <footer class="bg-gray-100 text-center py-4 text-sm text-gray-600 border-t mt-8">
+      Thank you — Forest App 2025. All rights reserved. CODE University of Applied Sciences
+    </footer>
 </body>
 </html>
-"@ | Out-File -FilePath "resources/views/components/layouts/app.blade.php" -Encoding utf8
