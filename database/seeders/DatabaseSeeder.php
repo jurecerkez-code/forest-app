@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'meditation_nature.mp3',
             'meditation_breathing.mp3',
             'meditation_mindfulness.mp3',
+            'meditation_forest.mp3',
         ];
         
         foreach ($audioFiles as $index => $audioFile) {
