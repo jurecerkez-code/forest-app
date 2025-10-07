@@ -50,7 +50,7 @@
                 </nav>
             @endif
         </header>
-        <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+        <div class="flex items-center justify-center w-full transition-opacity opacity-60 duration-750 lg:grow starting:opacity-0">
                     <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
                         <div class="text-center flex-1 p-6 pb-12 lg:p-20 bg-white/70 dark:bg-[#38755b]/80 text-[#22543d] dark:text-[#e6f4ea] shadow rounded-es-lg rounded-ee-lg lg:rounded-ss-lg lg:rounded-ee-none flex flex-col items-center justify-center">
     <h1 class="mb-4 text-4xl font-bold text-[#22543d] dark:text-[#e6f4ea]">Welcome to Forest Meditation App</h1>
