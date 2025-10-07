@@ -50,19 +50,18 @@
                 </nav>
             @endif
         </header>
-        <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-                    <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
-                        <div class="text-center flex-1 p-6 pb-12 lg:p-20 bg-white/70 dark:bg-[#38755b]/80 text-[#22543d] dark:text-[#e6f4ea] shadow rounded-es-lg rounded-ee-lg lg:rounded-ss-lg lg:rounded-ee-none flex flex-col items-center justify-center">
-    <h1 class="mb-4 text-4xl font-bold text-[#22543d] dark:text-[#e6f4ea]">Welcome to Forest Meditation App</h1>
-    <p class="mb-8 text-lg text-[#22543d] dark:text-[#e6f4ea]">
-        Track your meditation walks, listen to guided audio, and reflect with comments.<br>
-        Log in or register to start your journey!
-    </p>
-    <div class="space-x-4">
-        <a href="{{ route('login') }}" class="bg-[#94d3ac] hover:bg-[#6fcf97] text-[#22543d] font-semibold px-6 py-3 rounded-lg transition dark:bg-[#64bb8b] dark:text-[#254d32]">Login</a>
-        <a href="{{ route('register') }}" class="bg-[#b7e4c7] hover:bg-[#94d3ac] text-[#22543d] font-semibold px-6 py-3 rounded-lg transition dark:bg-[#b7e4c7] dark:text-[#254d32]">Register</a>
+        <div class="flex items-center justify-center w-full min-h-screen">
+    <div class="max-w-xl w-full bg-white bg-opacity-80 rounded-xl shadow-lg p-10 flex flex-col items-center">
+        <h1 class="mb-4 text-4xl font-bold text-[#22543d]">Welcome to Forest Meditation App</h1>
+        <p class="mb-8 text-lg text-[#22543d]">
+            Track your meditation walks, listen to guided audio, and reflect with comments.<br>
+            Log in or register to start your journey!
+        </p>
+        <div class="space-x-4">
+            <a href="{{ route('login') }}" class="bg-[#94d3ac] hover:bg-[#6fcf97] text-[#22543d] font-semibold px-6 py-3 rounded-lg transition">Login</a>
+            <a href="{{ route('register') }}" class="bg-[#b7e4c7] hover:bg-[#94d3ac] text-[#22543d] font-semibold px-6 py-3 rounded-lg transition">Register</a>
+        </div>
     </div>
-</div>
                         <!-- Keep or remove SVG art here as you wish -->
 </main>
 
