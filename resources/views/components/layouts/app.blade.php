@@ -6,7 +6,7 @@
     <title>Forest App</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100">
+<body class="bg-white">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
         <aside class="w-64 bg-white shadow-lg">
