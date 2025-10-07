@@ -52,19 +52,20 @@
         </header>
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
                     <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
-            <div class="text-center flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow rounded-es-lg rounded-ee-lg lg:rounded-ss-lg lg:rounded-ee-none flex flex-col items-center justify-center">
-                <h1 class="mb-4 text-4xl font-bold">Welcome to Forest Meditation App</h1>
-                <p class="mb-8 text-lg text-[#706f6c] dark:text-[#A1A09A]">
-                    Track your meditation walks, listen to guided audio, and reflect with comments.<br>
-                    Log in or register to start your journey!
-                </p>
-                <div class="space-x-4">
-                    <a href="{{ route('login') }}" class="bg-green-600 text-white px-6 py-3 rounded-lg">Login</a>
-                    <a href="{{ route('register') }}" class="bg-blue-600 text-white px-6 py-3 rounded-lg">Register</a>
-                    </div>
-                    </div>
-                <!-- You can keep your SVG image or remove it if you want -->
-                </main>
+    <div class="text-center flex-1 p-6 pb-12 lg:p-20 bg-[#e6f4ea] dark:bg-[#1b2e24] text-[#1b2e24] dark:text-green-100 shadow rounded-es-lg rounded-ee-lg lg:rounded-ss-lg lg:rounded-ee-none flex flex-col items-center justify-center">
+        <h1 class="mb-4 text-4xl font-bold text-[#22543d] dark:text-green-200">Welcome to Forest Meditation App</h1>
+        <p class="mb-8 text-lg text-[#5c7f67] dark:text-green-200">
+            Track your meditation walks, listen to guided audio, and reflect with comments.<br>
+            Log in or register to start your journey!
+        </p>
+        <div class="space-x-4">
+            <a href="{{ route('login') }}" class="bg-[#94d3ac] hover:bg-[#6fcf97] text-[#22543d] font-semibold px-6 py-3 rounded-lg transition">Login</a>
+            <a href="{{ route('register') }}" class="bg-[#b7e4c7] hover:bg-[#94d3ac] text-[#22543d] font-semibold px-6 py-3 rounded-lg transition">Register</a>
+        </div>
+    </div>
+    <!-- Keep or remove SVG art here as you wish -->
+</main>
+
         </div>
 
         @if (Route::has('login'))
