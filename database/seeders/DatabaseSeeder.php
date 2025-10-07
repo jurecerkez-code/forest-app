@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => \Illuminate\Support\Facades\Hash::make('password'),
             'email_verified_at' => now(),
+            'is_admin' => true,
         ]);
         
         // Create sample trips
