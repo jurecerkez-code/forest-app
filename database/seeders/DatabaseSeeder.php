@@ -11,10 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create test user
+        // Create Admin user
         $user = \App\Models\User::create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin User',
+            'email' => 'admin@admin.com',
             'password' => \Illuminate\Support\Facades\Hash::make('password'),
             'email_verified_at' => now(),
         ]);
