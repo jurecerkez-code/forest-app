@@ -1,90 +1,68 @@
-🌲 Forest App
-A guided meditation tracker built with Laravel and Livewire. Forest App lets users log meditation trips, listen to curated audio sessions, rate their experience, and share comments – all with secure email authentication.
+# 🌲 Forest App
 
-Features
-Email authentication (no phone required)
-Start meditation trips with a selection of audio guides
-Track trip details: duration, satisfaction rating, and completion status
-Comment system for sharing feedback and experiences
-Voice session tracking for each trip
-Dashboard with user stats (trips, satisfaction, favorite audio, etc.)
-Getting Started
-Prerequisites
-PHP >= 8.2
-Composer
-Node.js & npm
-SQLite (default, easy setup)
-Installation
-Clone the repository
-bash
+Forest App is a friendly Laravel + Livewire app for guided meditation. It helps you:
+- 🎧 pick an audio guide and start a “trip”
+- ⭐ rate your satisfaction when you finish
+- 💬 share comments and reflections
+- 📊 see personal stats (trips, satisfaction, favorite audio)
+- 🔐 log in securely with email (no phone needed)
 
-Copy
-git clone https://github.com/yourusername/forest-app.git
-cd forest-app
-Install dependencies
-bash
+Built by **Jure Čerkez** — repo: https://github.com/jurecerkez-code/forest-app
 
-Copy
-composer install
-npm install
-Setup environment
-bash
+## ✨ What it does (in plain words)
 
-Copy
-cp .env.example .env
-php artisan key:generate
-Configure database
-The app uses SQLite by default. Create the database file:
-bash
+- You start a meditation session with a chosen audio track, and the app tracks the trip.
+- When you’re done, you mark it complete, add a satisfaction rating, and optionally leave a comment.
+- Over time, the dashboard shows your progress: how often you meditate, which audio you prefer, and overall satisfaction trends.
+- Everything is tied to your account with simple email-based auth.
 
-Copy
-touch database/database.sqlite
-- In `.env`, set:
-      DB_CONNECTION=sqlite
-Run migrations and seed sample data
-bash
+## 🚀 Installation (no code blocks, just commands)
 
-Copy
-php artisan migrate
-php artisan db:seed
-Start the development server
-bash
+- Clone the repo: `git clone https://github.com/jurecerkez-code/forest-app.git` then `cd forest-app`
+- Install dependencies: `composer install` and (optional) `npm install`
+- Create environment: `cp .env.example .env` then `php artisan key:generate`
+- Use SQLite (default):
+  - Create DB file: `mkdir -p database` then `touch database/database.sqlite`
+  - In `.env`, set: `DB_CONNECTION=sqlite`
+- Migrate and seed sample data: `php artisan migrate:fresh --seed`
+- Start the server: `php artisan serve`
+- Open the app: `http://localhost:8000`
 
-Copy
-php artisan serve
-# or
-herd open
-Access the app
-Visit 
-http://localhost:8000
-Register a new account, or use test credentials:
-      Email: test@example.com
-      Password: password
-Usage
-Start a new meditation trip: Select an audio session and begin tracking.
-Complete trips: Rate your satisfaction when finished.
-View trip history: See details, listen again, and review your stats.
-Add comments: Share your experiences with each trip.
-Project Structure
-app/Models – Eloquent models (User, Trip, VoiceSession, Comment)
-app/Http/Controllers – Controllers for trips, comments, dashboard
-resources/views – Blade templates for UI
-routes/web.php – Web routes (protected by authentication)
-database/migrations – Table definitions
-database/seeders – Sample data for testing
-Customization & Next Steps
-Add your own audio files to public/audio
-Enhance UI with Tailwind CSS
-Implement statistics dashboard and email notifications
-(Coming soon) Admin features for managing users
-Troubleshooting
-Clear caches:
-php artisan config:clear && php artisan cache:clear && php artisan view:clear
-Reset database:
-php artisan migrate:fresh && php artisan db:seed
-Check logs:
-storage/logs/laravel.log
-License
-MIT
+Seeded admin for testing: `admin@admin.com` / `password`
 
-Happy meditating! 🌳
+## 🧭 Usage
+
+- Start a trip: choose an audio guide and hit start.
+- Finish a trip: rate satisfaction and mark it complete.
+- Read and write comments: reflect on your experience.
+- Review stats: track your progress and favorite audio guides.
+
+## 🗂️ Structure
+
+- Models: `User`, `Trip`, `VoiceSession`, `Comment`
+- Controllers: trips, comments, dashboard, users
+- Views: Blade + Livewire components
+- Routes: `routes/web.php` (protected by auth)
+- Database: migrations and seeders for quick setup
+- Audio: add files to `public/audio`
+
+## 🎨 Customization
+
+- Drop your own audio files into `public/audio`
+- Tweak styles with Tailwind CSS
+- Extend the dashboard or add admin features as you like
+
+## 🛠️ Troubleshooting
+
+- Clear caches: `php artisan config:clear && php artisan cache:clear && php artisan view:clear`
+- Reset DB: `php artisan migrate:fresh --seed`
+- Check logs: `storage/logs/laravel.log`
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, open an issue first to discuss what you’d like to change.  
+Please update tests as appropriate.
+
+## 📄 License
+
+MIT — use freely and kindly.
