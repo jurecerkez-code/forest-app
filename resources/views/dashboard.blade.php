@@ -1,6 +1,16 @@
 <x-layouts.app>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+
+        @if(Auth::check())
+    <div class="w-full mb-8">
+        <div class="rounded-lg px-8 py-6 bg-yellow-100 text-yellow-900 text-2xl font-semibold shadow flex items-center justify-between">
+            Welcome, {{ Auth::user()->name }}!
+            <span class="text-base font-normal text-yellow-700">Glad to see you 🌲</span>
+        </div>
+    </div>
+@endif
+
         
         <!-- Statistics Cards -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
