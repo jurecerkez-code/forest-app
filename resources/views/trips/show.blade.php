@@ -8,6 +8,15 @@
         
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold">Trip Details</h1>
+
+            <div>
+                <span class="text-gray-700 text-sm">Created by:</span>
+                <a href="{{ route('users.show', $trip->user->id) }}" class="font-semibold text-blue-600 hover:underline">
+                    {{ $trip->user->name }}
+                </a>
+                <span class="text-gray-500 text-xs">({{ $trip->user->email }})</span>
+            </div>
+
             
             @if($trip->canEditOrDelete(auth()->user()))
                 <div class="flex gap-2">
